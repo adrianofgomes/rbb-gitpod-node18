@@ -16,8 +16,6 @@
 
 Obs.: O GitPod não consegue manter o mesmo mneumonico do truffle quando o worspace é desligado e o truffle não fornece a opção de fixar o mneumonico. O ganache é da mesma suite do trufle e permite fixar o mneumonico e foi adcionado como alternativa. Ele é inicado na porta 8545 e o GitPod foi configurado pra implantar o contrato do lab1 automaticamente. Após implantar o contrato, substitua o endereço nos arquivos *Ganache.js e teste.
 
-O arquivo de configuração do GitPod (.gitpod.yml) pode ser editado para iniciar o ganache ao invés do truffle automaticamente.
-
 ### Metamask
 1. Instale o plugin da Metamask.
 1. Escolha importar uma carteira e utilize as 12 palavras geradas pelo truffle no console. Confira a conta da Metamask com o primeiro endereço 
