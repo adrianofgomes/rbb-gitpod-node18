@@ -2,6 +2,8 @@ image: gitpod/workspace-node-18
 
 tasks:
   - init: yarn add truffle && yarn add ganache && yarn install
-    #command: yarn run start 
-    command: npx truffle develop
-    #command: npx ganache-cli --seed myCustomSeed
+    command: cd lab1/blockchain && npx truffle develop
+  - name: ganache
+    command: cd lab1/blockchain && npx ganache --seed myCustomSeed
+  - name: contrato
+    command: cd lab1/blockchain && npx truffle migrate --network ganache
