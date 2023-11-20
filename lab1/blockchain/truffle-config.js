@@ -6,7 +6,7 @@ module.exports = {
       network_id: "*", // Match any network id
       //gas: 7952388  // Gas limit used for deploys      
     },
-    ganache: {
+    ganache: { //para fazer deploy na rede ganache utilize npx truffle migrate --network ganache
         host: "127.0.0.1",
         port: 8545,
         network_id: "*"
