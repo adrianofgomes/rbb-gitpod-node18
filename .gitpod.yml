@@ -1,18 +1,18 @@
 image: gitpod/workspace-node-18
 
 tasks:
-  - init: yarn add truffle && yarn install
+  - init: yarn add truffle && yarn add ganache && yarn install
     command: >
       cd lab1/blockchain && 
       npx truffle develop
   - name: ganache
-    init: yarn add ganache
+    init: gp ports await 9545
     command: >
       cd lab1/blockchain && 
       npx ganache --seed myCustomSeed
     openMode: split-right	
   - name: contrato
-    init: gp sync-await ganache
+    #init: gp sync-await ganache
     command: |
       gp ports await 8545
       cd lab1/blockchain && 
