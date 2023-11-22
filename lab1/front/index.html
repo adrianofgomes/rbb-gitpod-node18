@@ -1,0 +1,60 @@
+<html>
+
+<title>Web3 - Frontend</title>
+
+<body>
+    <h1>Web3 - Frontend</h1>
+    <p>Provider: <span id="provider"></span></p>
+    <p>Chain ID: <span id="chainId"></span></p>
+    <p>Account address: <span id="address"></span></p>
+</body>
+<script src="node_modules/web3/dist/web3.min.js"></script>
+<script>
+
+    const chainIdLocal = 1337;
+
+    window.addEventListener('load', async () => {
+
+        // Quando tem Metamask
+        if (typeof window.ethereum !== 'undefined') {
+            const web3 = new Web3(ethereum);
+            showProvider('via metamask');
+            
+            const accounts = await web3.eth.requestAccounts();
+            showAccountAddress(accounts[0]);
+            
+            showChainId(await web3.eth.getChainId());
+
+            await irParaRedeTruffleLocal(web3);
+            showChainId(await web3.eth.getChainId());
+
+        // Quando não tem, podemos conectar diretamente na rede local
+        } else {
+            const web3 = new Web3("http://127.0.0.1:8545");
+            showProvider('direto na rede via localhost');
+
+            const accounts = await web3.eth.getAccounts();
+            showAccountAddress(accounts[0]);
+
+            showChainId(await web3.eth.getChainId());
+        }
+    });
+    function showProvider(provider) {
+        document.getElementById('provider').innerText = provider;
+    }
+    function showAccountAddress(address) {
+        document.getElementById('address').innerText = address;
+    }
+    function showChainId(chainId) {
+        document.getElementById('chainId').innerText = chainId 
+          + (chainId == chainIdLocal ? ' (truffle local)' : ' (não é a rede local: '+ chainIdLocal +')');
+    }
+    async function irParaRedeTruffleLocal(web3) {
+        await window.ethereum.request({
+            method: 'wallet_switchEthereumChain',
+            params: [{ chainId: web3.utils.toHex(chainIdLocal) }]
+        });
+    }
+</script>
+
+</html>
