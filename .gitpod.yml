@@ -9,7 +9,7 @@ tasks:
     init: gp ports await 9545
     command: >
       cd lab1/blockchain && 
-      npx ganache --seed myCustomSeed
+      npx ganache --seed $GANACHE_SEED
     openMode: split-right	
   - name: contrato
     #init: gp sync-await ganache
